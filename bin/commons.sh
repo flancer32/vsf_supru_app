@@ -4,15 +4,18 @@
 ## =========================================================================
 # shellcheck disable=SC1090 # "Can't follow non-constant source."
 
-# exit if local config is already loaded
-test ! -z "${CONFIG_IS_LOADED}" && exit 0
+# exit if local config is already loaded ('DEPLOY_MODE' is defined in config)
+test ! -z "${DEPLOY_MODE}" && exit 0
 
 # Get ROOT directory from parent script or calculate relative.
 export DIR_ROOT=${DIR_ROOT:-$(cd "$(dirname "$0")/../" && pwd)}
 # stick name of the parent script
 PROGNAME=$(basename "$0" ".sh")
-# local configuration file
+# file name for local configuration
 export FILE_CFG="${DIR_ROOT}/cfg.local.sh"
+# available deployment modes: development & production
+export DEPLOY_MODE_DEV="dev"
+export DEPLOY_MODE_PROD="prod"
 
 ## *************************************************
 #   Define commonly used functions:

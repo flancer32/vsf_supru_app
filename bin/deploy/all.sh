@@ -9,3 +9,4 @@ DIR_ROOT=${DIR_ROOT:=$(cd "$(dirname "$0")/../../" && pwd)}
 . "${DIR_ROOT}/bin/commons.sh"
 
 
+git clone -b "v1.11.0" https://github.com/DivanteLtd/vue-storefront.git
