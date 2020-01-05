@@ -5,7 +5,7 @@
 # shellcheck disable=SC1090 # "Can't follow non-constant source."
 
 # exit if local config is already loaded ('DEPLOY_MODE' is defined in config)
-test ! -z "${DEPLOY_MODE}" && exit 0
+test ! -z "${DEPLOY_MODE}" && return
 
 # Get ROOT directory from parent script or calculate relative.
 export DIR_ROOT=${DIR_ROOT:-$(cd "$(dirname "$0")/../" && pwd)}

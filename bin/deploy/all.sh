@@ -6,7 +6,15 @@
 # root directory (set before or relative to the current shell script)
 DIR_ROOT=${DIR_ROOT:=$(cd "$(dirname "$0")/../../" && pwd)}
 # load local config and define common functions
-. "${DIR_ROOT}/bin/commons.sh"
+/bin/bash "${DIR_ROOT}/bin/commons.sh"
 
+## =========================================================================
+#   Setup & validate working environment
+## =========================================================================
+# check external vars used in this script (see cfg.[work|live].sh)
+#: "${DEPLOY_MODE:?}"
+# local context vars
+DIR_DEPLOY="${DIR_ROOT}/bin/deploy"
 
-git clone -b "v1.11.0" https://github.com/DivanteLtd/vue-storefront.git
+/bin/bash "${DIR_DEPLOY}/front.sh"
+/bin/bash "${DIR_DEPLOY}/api.sh"
