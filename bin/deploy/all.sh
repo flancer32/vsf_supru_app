@@ -18,3 +18,4 @@ DIR_DEPLOY="${DIR_ROOT}/bin/deploy"
 
 /bin/bash "${DIR_DEPLOY}/front.sh"
 /bin/bash "${DIR_DEPLOY}/api.sh"
+/bin/bash "${DIR_DEPLOY}/m2v.sh"

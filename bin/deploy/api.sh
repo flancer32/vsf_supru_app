@@ -84,7 +84,7 @@ info "Build 'vue-storefront-api' app in '${DEPLOY_MODE}' mode."
 info "========================================================================"
 # build app according to the deployment mode (default: production)
 if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
-  git checkout -b "v1.11.0"
+  git checkout "v1.11.0"
   yarn install
 #  yarn build
 else

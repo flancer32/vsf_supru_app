@@ -34,8 +34,7 @@ info "Clone 'mage2vuestorefront' app."
 info "========================================================================"
 git clone https://github.com/DivanteLtd/mage2vuestorefront.git "${DIR_M2V}"
 cd "${DIR_M2V}" || exit 255
-git checkout -b "feature/es7"
-
+git checkout "feature/es7"
 
 info "========================================================================"
 info "Create local config for 'mage2vuestorefront' app."
@@ -51,7 +50,7 @@ M2V_CLI="\${ROOT}/src/cli.js"
 export TIME_TO_EXIT="2000"
 
 # Setup connection to Magento
-export ELASTICSEARCH_API_VERSION="7.2"
+export ELASTICSEARCH_API_VERSION="7.1"
 export DATABASE_URL="${ES_URL}"
 
 # Setup connection to Magento
