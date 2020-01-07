@@ -15,6 +15,7 @@ DIR_ROOT=${DIR_ROOT:=$(cd "$(dirname "$0")/../../" && pwd)}
 : "${DEPLOY_MODE:?}"
 : "${DEPLOY_MODE_DEV:?}"
 : "${ES_HOST:?}"
+: "${ES_INDEX_NAME=:?}"
 : "${ES_PORT:?}"
 : "${MAGE_API_ACCESS_TOKEN:?}"
 : "${MAGE_API_ACCESS_TOKEN_SECRET:?}"
@@ -38,7 +39,7 @@ cd "${DIR_APPS}" || exit 255
 info "========================================================================"
 info "Clone 'vue-storefront-api' app."
 info "========================================================================"
-git clone https://github.com/DivanteLtd/vue-storefront.git "${DIR_VSF_API}"
+git clone https://github.com/DivanteLtd/vue-storefront-api.git "${DIR_VSF_API}"
 cd "${DIR_VSF_API}" || exit 255
 
 info "========================================================================"
@@ -53,7 +54,10 @@ cat <<EOM | tee "${DIR_VSF_API}/config/local.json"
   "elasticsearch": {
     "host": "${ES_HOST}",
     "port": ${ES_PORT},
-    "apiVersion": "7.1"
+    "indices": [
+      "${ES_INDEX_NAME}"
+    ],
+    "apiVersion": "7.2"
   },
   "redis": {
     "host": "${REDIS_HOST}",
@@ -86,7 +90,8 @@ info "========================================================================"
 if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
   git checkout "v1.11.0"
   yarn install
-#  yarn build
+  yarn build
+  yarn db7 new
 else
   info "deploy in dev mode"
 fi

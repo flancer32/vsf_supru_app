@@ -77,7 +77,6 @@ info "========================================================================"
 # build app according to the deployment mode (default: production)
 if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
   yarn install
-#  yarn build
 else
   info "deploy in dev mode"
 fi

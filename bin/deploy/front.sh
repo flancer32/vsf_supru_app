@@ -86,7 +86,7 @@ info "========================================================================"
 if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
   git checkout "v1.11.0"
   yarn install
-#  yarn build
+  yarn build
 else
   info "deploy in dev mode"
 fi
