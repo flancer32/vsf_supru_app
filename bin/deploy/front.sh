@@ -86,7 +86,8 @@ info "Build 'vue-storefront' app in '${DEPLOY_MODE}' mode."
 info "========================================================================"
 # build app according to the deployment mode (default: production)
 if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
-  git checkout "v1.11.0"
+#  git checkout "v1.11.0"
+  git checkout "master"
 
   cd "${DIR_ROOT}" || exit 255
   . "${DIR_CUR}/front/patch.sh"
