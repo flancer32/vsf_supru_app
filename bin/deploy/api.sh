@@ -93,6 +93,7 @@ if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
 
   yarn install
   yarn build
+  yarn start
   yarn db7 new
 else
   info "deploy in dev mode"
