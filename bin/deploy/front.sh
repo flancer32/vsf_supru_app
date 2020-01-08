@@ -7,7 +7,7 @@
 DIR_ROOT=${DIR_ROOT:=$(cd "$(dirname "$0")/../../" && pwd)}
 DIR_CUR="$(cd "$(dirname "$0")" && pwd)"
 # load local config and define common functions
-. "${DIR_ROOT}/bin/commons.sh"
+. "${DIR_ROOT}/bin/lib/commons.sh"
 
 ## =========================================================================
 #   Setup & validate working environment
@@ -71,7 +71,7 @@ cat <<EOM | tee "${DIR_VSF}/config/local.json"
     "productPlaceholder": "/assets/placeholder.jpg"
   },
   "install": {
-    "is_local_backend": false
+    "is_local_backend": true
   },
   "tax": {
     "defaultCountry": "RU"

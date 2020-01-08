@@ -8,7 +8,7 @@
 test ! -z "${DEPLOY_MODE}" && return
 
 # Get ROOT directory from parent script or calculate relative.
-export DIR_ROOT=${DIR_ROOT:-$(cd "$(dirname "$0")/../" && pwd)}
+export DIR_ROOT=${DIR_ROOT:-$(cd "$(dirname "$0")/../../" && pwd)}
 # stick name of the parent script
 PROGNAME=$(basename "$0" ".sh")
 # file name for local configuration
