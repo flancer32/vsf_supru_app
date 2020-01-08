@@ -14,6 +14,7 @@ DIR_ROOT=${DIR_ROOT:=$(cd "$(dirname "$0")/../../" && pwd)}
 # check external vars used in this script (see cfg.[work|live].sh)
 : "${DEPLOY_MODE:?}"
 : "${DEPLOY_MODE_DEV:?}"
+: "${ES_API_VERSION:?}"
 : "${ES_HOST:?}"
 : "${ES_INDEX_NAME=:?}"
 : "${ES_PORT:?}"
@@ -24,10 +25,13 @@ DIR_ROOT=${DIR_ROOT:=$(cd "$(dirname "$0")/../../" && pwd)}
 : "${MAGE_HOST:?}"
 : "${MAGE_URL_IMG:?}"
 : "${MAGE_URL_REST:?}"
+: "${REDIS_DB:?}"
 : "${REDIS_HOST:?}"
 : "${REDIS_PORT:?}"
-: "${VSF_API_HOST:?}"
-: "${VSF_API_PORT:?}"
+: "${VSF_API_SERVER_IP:?}"
+: "${VSF_API_SERVER_PORT:?}"
+: "${VSF_API_WEB_HOST:?}"
+: "${VSF_API_WEB_PROTOCOL:?}"
 # local context vars
 DIR_APPS="${DIR_ROOT}/apps"
 DIR_VSF_API="${DIR_APPS}/vue-storefront-api"
@@ -48,8 +52,8 @@ info "========================================================================"
 cat <<EOM | tee "${DIR_VSF_API}/config/local.json"
 {
   "server": {
-    "host": "${VSF_API_HOST}",
-    "port": ${VSF_API_PORT}
+    "host": "${VSF_API_SERVER_IP}",
+    "port": ${VSF_API_SERVER_PORT}
   },
   "elasticsearch": {
     "host": "${ES_HOST}",
@@ -57,11 +61,17 @@ cat <<EOM | tee "${DIR_VSF_API}/config/local.json"
     "indices": [
       "${ES_INDEX_NAME}"
     ],
-    "apiVersion": "7.2"
+    "apiVersion": "${ES_API_VERSION}"
   },
   "redis": {
     "host": "${REDIS_HOST}",
-    "port": ${REDIS_PORT}
+    "port": ${REDIS_PORT},
+    "db": ${REDIS_DB},
+  },
+  "authHashSecret": "__SECRET_CHANGE_ME__",
+  "objHashSecret": "__SECRET_CHANGE_ME__",
+  "tax": {
+    "defaultCountry": "RU"
   },
   "magento2": {
     "imgUrl": "${MAGE_URL_IMG}",
@@ -73,6 +83,7 @@ cat <<EOM | tee "${DIR_VSF_API}/config/local.json"
       "accessTokenSecret": "${MAGE_API_ACCESS_TOKEN_SECRET}"
     }
   },
+  "magento1": {},
   "imageable": {
     "whitelist": {
       "allowedHosts": [

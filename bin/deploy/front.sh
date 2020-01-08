@@ -19,10 +19,14 @@ DIR_CUR="$(cd "$(dirname "$0")" && pwd)"
 : "${REDIS_DB:?}"
 : "${REDIS_HOST:?}"
 : "${REDIS_PORT:?}"
-: "${VSF_API_HOST:?}"
-: "${VSF_API_PORT:?}"
-: "${VSF_HOST:?}"
-: "${VSF_PORT:?}"
+: "${VSF_API_SERVER_IP:?}"
+: "${VSF_API_SERVER_PORT:?}"
+: "${VSF_API_WEB_HOST:?}"
+: "${VSF_API_WEB_PROTOCOL:?}"
+: "${VSF_FRONT_SERVER_IP:?}"
+: "${VSF_FRONT_SERVER_PORT:?}"
+: "${VSF_FRONT_WEB_HOST:?}"
+: "${VSF_FRONT_WEB_PROTOCOL:?}"
 # local context vars
 DIR_APPS="${DIR_ROOT}/apps"
 DIR_VSF="${DIR_APPS}/vue-storefront"
@@ -43,8 +47,9 @@ info "========================================================================"
 cat <<EOM | tee "${DIR_VSF}/config/local.json"
 {
   "server": {
-    "host": "${VSF_HOST}",
-    "port": ${VSF_PORT}
+    "host": "${VSF_FRONT_SERVER_IP}",
+    "port": ${VSF_FRONT_SERVER_PORT},
+    "protocol": "${VSF_FRONT_WEB_PROTOCOL}",
   },
   "redis": {
     "host": "${REDIS_HOST}",
@@ -52,7 +57,7 @@ cat <<EOM | tee "${DIR_VSF}/config/local.json"
     "db": ${REDIS_DB}
   },
   "api": {
-    "url": "http://${VSF_API_HOST}:${VSF_API_PORT}"
+    "url": "${VSF_API_WEB_PROTOCOL}://${VSF_API_WEB_HOST}"
   },
   "elasticsearch": {
     "index": "${ES_INDEX_NAME}",
@@ -62,8 +67,14 @@ cat <<EOM | tee "${DIR_VSF}/config/local.json"
   },
   "images": {
     "useExactUrlsNoProxy": false,
-    "baseUrl": "http://${VSF_API_HOST}:${VSF_API_PORT}/img/",
+    "baseUrl": "${VSF_API_WEB_PROTOCOL}://${VSF_API_WEB_HOST}/img/",
     "productPlaceholder": "/assets/placeholder.jpg"
+  },
+  "install": {
+    "is_local_backend": false
+  },
+  "tax": {
+    "defaultCountry": "RU"
   },
   "i18n": {
     "defaultCountry": "RU",
