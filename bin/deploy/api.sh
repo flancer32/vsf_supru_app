@@ -66,7 +66,7 @@ cat <<EOM | tee "${DIR_VSF_API}/config/local.json"
   "redis": {
     "host": "${REDIS_HOST}",
     "port": ${REDIS_PORT},
-    "db": ${REDIS_DB},
+    "db": ${REDIS_DB}
   },
   "authHashSecret": "__SECRET_CHANGE_ME__",
   "objHashSecret": "__SECRET_CHANGE_ME__",

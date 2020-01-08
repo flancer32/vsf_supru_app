@@ -49,7 +49,7 @@ cat <<EOM | tee "${DIR_VSF}/config/local.json"
   "server": {
     "host": "${VSF_FRONT_SERVER_IP}",
     "port": ${VSF_FRONT_SERVER_PORT},
-    "protocol": "${VSF_FRONT_WEB_PROTOCOL}",
+    "protocol": "${VSF_FRONT_WEB_PROTOCOL}"
   },
   "redis": {
     "host": "${REDIS_HOST}",
