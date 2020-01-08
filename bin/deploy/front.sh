@@ -49,7 +49,7 @@ cat <<EOM | tee "${DIR_VSF}/config/local.json"
   "server": {
     "host": "${VSF_FRONT_SERVER_IP}",
     "port": ${VSF_FRONT_SERVER_PORT},
-    "protocol": "${VSF_FRONT_WEB_PROTOCOL}"
+    "protocol": "http"
   },
   "redis": {
     "host": "${REDIS_HOST}",
@@ -57,7 +57,7 @@ cat <<EOM | tee "${DIR_VSF}/config/local.json"
     "db": ${REDIS_DB}
   },
   "api": {
-    "url": "${VSF_API_WEB_PROTOCOL}://${VSF_API_WEB_HOST}"
+    "url": "http://${VSF_API_SERVER_IP}:${VSF_API_SERVER_PORT}"
   },
   "elasticsearch": {
     "index": "${ES_INDEX_NAME}",
