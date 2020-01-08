@@ -1,0 +1,15 @@
+Index: apps/vue-storefront/ecosystem.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- apps/vue-storefront/ecosystem.json	(date 1578421959214)
++++ apps/vue-storefront/ecosystem.json	(date 1578421959214)
+@@ -11,6 +11,7 @@
+       },
+       "interpreter": "./node_modules/.bin/ts-node",
+       "script": "./core/scripts/server.ts",
++      "args": "-P ./tsconfig-build.json",
+       "node_args": "--max_old_space_size=1024",
+       "log_date_format": "YYYY-MM-DD HH:mm:ss",
+       "ignore_watch": [

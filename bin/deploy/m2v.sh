@@ -23,6 +23,7 @@ DIR_ROOT=${DIR_ROOT:=$(cd "$(dirname "$0")/../../" && pwd)}
 : "${MAGE_URL_REST:?}"
 # local context vars
 DIR_APPS="${DIR_ROOT}/apps"
+DIR_API="${DIR_APPS}/vue-storefront-api"
 DIR_M2V="${DIR_APPS}/mage2vuestorefront"
 
 # create applications root directory if not exist
@@ -49,8 +50,8 @@ M2V_CLI="\${ROOT}/src/cli.js"
 
 export TIME_TO_EXIT="2000"
 
-# Setup connection to Magento
-export ELASTICSEARCH_API_VERSION="7.1"
+# Setup connection to Elasticsearch
+export ELASTICSEARCH_API_VERSION="7.5"
 export DATABASE_URL="${ES_URL}"
 
 # Setup connection to Magento
@@ -69,6 +70,11 @@ node --harmony "\${M2V_CLI}" attributes --removeNonExistent=true
 node --harmony "\${M2V_CLI}" categories --removeNonExistent=true
 node --harmony "\${M2V_CLI}" productcategories
 node --harmony "\${M2V_CLI}" products --removeNonExistent=true
+
+#cd ${DIR_API}
+#rm -f ${DIR_API}/var/catalog*.json
+#yarn dump7 --input-index="${INDEX_NAME}"
+#yarn db7 rebuild --indexName="${INDEX_NAME}"
 EOM
 
 info "========================================================================"

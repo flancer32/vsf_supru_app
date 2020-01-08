@@ -5,6 +5,7 @@
 # shellcheck disable=SC1090 # Can't follow non-constant source.
 # root directory (set before or relative to the current shell script)
 DIR_ROOT=${DIR_ROOT:=$(cd "$(dirname "$0")/../../" && pwd)}
+DIR_CUR="$(cd "$(dirname "$0")" && pwd)"
 # load local config and define common functions
 . "${DIR_ROOT}/bin/commons.sh"
 
@@ -54,6 +55,7 @@ cat <<EOM | tee "${DIR_VSF}/config/local.json"
     "url": "http://${VSF_API_HOST}:${VSF_API_PORT}"
   },
   "elasticsearch": {
+    "index": "${ES_INDEX_NAME}",
     "indices": [
       "${ES_INDEX_NAME}"
     ]
@@ -85,6 +87,11 @@ info "========================================================================"
 # build app according to the deployment mode (default: production)
 if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
   git checkout "v1.11.0"
+
+  cd "${DIR_ROOT}" || exit 255
+  . "${DIR_CUR}/front/patch.sh"
+  cd "${DIR_VSF}" || exit 255
+
   yarn install
   yarn build
 else
