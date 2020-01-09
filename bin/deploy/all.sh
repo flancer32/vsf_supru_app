@@ -9,6 +9,6 @@ DIR_CUR="$(cd "$(dirname "$0")" && pwd)"
 # load local config and define common functions
 . "${DIR_ROOT}/bin/lib/commons.sh"
 
-/bin/bash "${DIR_CUR}/front.sh"
-/bin/bash "${DIR_CUR}/api.sh"
-/bin/bash "${DIR_CUR}/m2v.sh"
+. "${DIR_CUR}/front.sh"
+. "${DIR_CUR}/api.sh"
+. "${DIR_CUR}/m2v.sh"
