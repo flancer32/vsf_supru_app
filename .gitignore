@@ -2,3 +2,7 @@
 /apps/
 /cfg.local.sh
 /tmp/
+/var/log/
+/var/log/!.gitkeep
+/var/pid/
+/var/pid/!.gitkeep

@@ -1,4 +1,4 @@
-#!/usr/bin/env/bash
+#!/bin/bash
 ## =========================================================================
 #   Script to setup shell and to define commonly used functions.
 ## =========================================================================
@@ -9,8 +9,6 @@ test ! -z "${DEPLOY_MODE}" && return
 
 # Get ROOT directory from parent script or calculate relative.
 export DIR_ROOT=${DIR_ROOT:-$(cd "$(dirname "$0")/../../" && pwd)}
-# stick name of the parent script
-PROGNAME=$(basename "$0" ".sh")
 # file name for local configuration
 export FILE_CFG="${DIR_ROOT}/cfg.local.sh"
 # available deployment modes: development & production
@@ -28,11 +26,13 @@ export DEPLOY_MODE_PROD="prod"
 ##
 # Print out info message & error message with timestamp
 ##
+# Get the name of the parent script (exclude all up to '/' from '$0')
+export SCRIPT_NAME=${SCRIPT_NAME:-${0##*/}}
 info() {
-  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')] ($PROGNAME) INFO: $*"
+  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')] (${SCRIPT_NAME}) INFO: $*"
 }
 err() {
-  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')] ($PROGNAME) ERROR: $*" >&2
+  echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')] ($SCRIPT_NAME) ERROR: $*" >&2
 }
 
 ##

@@ -1,11 +1,11 @@
-#!/usr/bin/env/bash
+#!/bin/bash
 ## =========================================================================
 #   Deploy 'vue-storefront' application for the project.
 ## =========================================================================
 # shellcheck disable=SC1090 # Can't follow non-constant source.
 # root directory (set before or relative to the current shell script)
 DIR_ROOT=${DIR_ROOT:=$(cd "$(dirname "$0")/../../" && pwd)}
-DIR_CUR="$(cd "$(dirname "$0")" && pwd)"
+DIR_CUR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 # load local config and define common functions
 . "${DIR_ROOT}/bin/lib/commons.sh"
 
@@ -106,7 +106,7 @@ if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
 
   yarn install
   yarn build
-  yarn start
+#  yarn start
 else
   info "deploy in dev mode"
 fi

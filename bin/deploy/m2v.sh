@@ -1,4 +1,4 @@
-#!/usr/bin/env/bash
+#!/bin/bash
 ## =========================================================================
 #   Deploy 'mage2vuestorefront' application for the project.
 ## =========================================================================
@@ -42,7 +42,7 @@ info "Create local config for 'mage2vuestorefront' app."
 info "========================================================================"
 # see "apps/mage2vuestorefront/src/config.js" for available env. params
 cat <<EOM | tee "${DIR_M2V}/replicate_msk.sh"
-#!/usr/bin/env/bash
+#!/bin/bash
 #  Exit immediately if a command exits with a non-zero status.
 set -e
 ROOT=\$(cd "\$(dirname "\$0")/" && pwd)
