@@ -57,7 +57,7 @@ cat <<EOM | tee "${DIR_VSF}/config/local.json"
     "db": ${REDIS_DB}
   },
   "api": {
-    "url": "http://${VSF_API_SERVER_IP}:${VSF_API_SERVER_PORT}"
+    "url": "${VSF_API_WEB_PROTOCOL}://${VSF_API_WEB_HOST}"
   },
   "elasticsearch": {
     "index": "${ES_INDEX_NAME}",
