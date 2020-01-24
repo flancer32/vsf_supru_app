@@ -88,7 +88,8 @@ cat <<EOM | tee "${DIR_VSF}/config/local.json"
     "fullCountryName": "Russian Federation",
     "fullLanguageName": "Russian",
     "bundleAllStoreviewLanguages": true
-  }
+  },
+  "theme": "@supplz/vsf-theme-ru"
 }
 EOM
 
@@ -101,6 +102,7 @@ if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
   git checkout "master"
 
   cd "${DIR_ROOT}" || exit 255
+  . "${DIR_CUR}/front/theme.sh"
   . "${DIR_CUR}/front/patch.sh"
   cd "${DIR_VSF}" || exit 255
 
