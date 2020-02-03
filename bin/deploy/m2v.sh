@@ -38,15 +38,16 @@ cd "${DIR_M2V}" || exit 255
 git checkout "feature/es7"
 
 info "========================================================================"
-info "Create local config for 'mage2vuestorefront' app."
+info "Create script to replicate Magento data into Elasticsearch."
 info "========================================================================"
 # see "apps/mage2vuestorefront/src/config.js" for available env. params
-cat <<EOM | tee "${DIR_M2V}/replicate_msk.sh"
+cat <<EOM | tee "${DIR_APPS}/data_replicate_m2v.sh"
 #!/bin/bash
 #  Exit immediately if a command exits with a non-zero status.
 set -e
-ROOT=\$(cd "\$(dirname "\$0")/" && pwd)
-M2V_CLI="\${ROOT}/src/cli.js"
+DIR_ROOT=\$(cd "\$(dirname "\$0")/" && pwd) # ./apps/
+DIR_M2V="\${DIR_ROOT}/mage2vuestorefront"
+M2V_CLI="\${DIR_M2V}/src/cli.js"
 
 export TIME_TO_EXIT="2000"
 
@@ -71,11 +72,32 @@ node --harmony "\${M2V_CLI}" categories --removeNonExistent=true
 node --harmony "\${M2V_CLI}" productcategories
 node --harmony "\${M2V_CLI}" products --removeNonExistent=true
 
-#cd ${DIR_API}
-#rm -f ${DIR_API}/var/catalog*.json
-#yarn dump7 --input-index="${INDEX_NAME}"
-#yarn db7 rebuild --indexName="${INDEX_NAME}"
+cd "\${DIR_API}"
+rm -fr "\${DIR_API}/var/*"
+yarn dump7 --input-index="${ES_INDEX_NAME}" --output-file "./var/${ES_INDEX_NAME}.json"
+yarn db7 rebuild --indexName="${ES_INDEX_NAME}"
 EOM
+
+chmod a+x "${DIR_APPS}/data_replicate_m2v.sh"
+
+info "========================================================================"
+info "Create script to dump Elasticsearch data."
+info "========================================================================"
+# see "apps/mage2vuestorefront/src/config.js" for available env. params
+cat <<EOM | tee "${DIR_APPS}/data_dump_es.sh"
+#!/bin/bash
+#  Exit immediately if a command exits with a non-zero status.
+set -e
+DIR_ROOT=\$(cd "\$(dirname "\$0")/" && pwd) # ./apps/
+DIR_API="\${DIR_ROOT}/vue-storefront-api"
+
+cd "\${DIR_API}"
+rm -fr "\${DIR_API}/var/*"
+yarn dump7 --input-index="${ES_INDEX_NAME}" --output-file "\${DIR_API}/var/${ES_INDEX_NAME}.json"
+tar -C "\${DIR_API}/var/" -zcf "\${DIR_ROOT}/../data/dump/supru_${ES_INDEX_NAME}.tar.gz" .
+EOM
+
+chmod a+x "${DIR_APPS}/data_dump_es.sh"
 
 info "========================================================================"
 info "Build 'mage2vuestorefront' app in '${DEPLOY_MODE}' mode."

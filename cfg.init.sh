@@ -13,6 +13,7 @@ export VSF_FRONT_SERVER_IP="127.0.0.1"
 export VSF_FRONT_SERVER_PORT="3100"
 export VSF_FRONT_WEB_HOST="front.vsf.test.supru.flancer64.com"
 export VSF_FRONT_WEB_PROTOCOL="https"
+export VSF_FRONT_THEME="@supplz/vsf-theme-ru"
 
 # VSF API
 export VSF_API_SERVER_IP="127.0.0.1"
@@ -30,12 +31,17 @@ export ES_HOST="127.0.0.1"
 export ES_PORT="9200"
 export ES_API_VERSION="7.2"
 export ES_URL="http://${ES_HOST}:${ES_PORT}"
-export ES_INDEX_NAME="vue_storefront_catalog"
+export ES_INDEX_NAME="vsf_msk"
 
+# Store view configuration
+export SW_STOCK_ID="1" # change postfix in 'MAGE_URL_REST' below: http://${MAGE_HOST}/rest/store_view
+export SW_STORE_ID="1"
+
+# Setup connection to Magento (supplz.ru)
 export MAGE_HOST="supplz.ru.local.flancer64.com"
-export MAGE_API_CONSUMER_KEY="..."
-export MAGE_API_CONSUMER_SECRET="..."
-export MAGE_API_ACCESS_TOKEN="..."
-export MAGE_API_ACCESS_TOKEN_SECRET="..."
-export MAGE_URL_REST="http://${MAGE_HOST}/rest"
+export MAGE_API_CONSUMER_KEY="e3n...6hl"
+export MAGE_API_CONSUMER_SECRET="fp4...fba"
+export MAGE_API_ACCESS_TOKEN="dzr...chx"
+export MAGE_API_ACCESS_TOKEN_SECRET="wi3...ix2"
+export MAGE_URL_REST="http://${MAGE_HOST}/rest/default"
 export MAGE_URL_IMG="http://${MAGE_HOST}/media/catalog/product"

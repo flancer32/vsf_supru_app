@@ -13,11 +13,11 @@ DIR_ROOT=${DIR_ROOT:=$(cd "$(dirname "$0")/../../../" && pwd)}
 ## =========================================================================
 # check external vars used in this script (see cfg.[work|live].sh)
 : "${DEPLOY_MODE:?}"
+: "${ES_INDEX_NAME:?}"
 # local context vars
 DIR_APPS="${DIR_ROOT}/apps"
 DIR_API="${DIR_APPS}/vue-storefront-api"
-FILE_DUMP="${DIR_ROOT}/data/dump/supru_vsf_data_test.tar.gz"
-IDX_MSK="vsf_msk"
+FILE_DUMP="${DIR_ROOT}/data/dump/supru_${ES_INDEX_NAME}.tar.gz"
 
 # go to API app root directory
 cd "${DIR_API}" || exit 255
@@ -29,11 +29,11 @@ info "========================================================================"
 info "Extract test from '${FILE_DUMP}'."
 tar -zxf "${FILE_DUMP}" -C "${DIR_API}/var/"
 
-info "Remove current data for '${IDX_MSK}' index from Elasticsearch."
-echo node ./scripts/db7.js new -i "${IDX_MSK}"
+info "Remove current data for '${ES_INDEX_NAME}' index from Elasticsearch."
+echo node ./scripts/db7.js new -i "$ES_INDEX_NAME"
 
-info "Restore data for '${IDX_MSK}' index in Elasticsearch."
-node ./scripts/elastic7.js restore --output-index ${IDX_MSK} --input-file var/${IDX_MSK}.json
+info "Restore data for '${ES_INDEX_NAME}' index in Elasticsearch."
+node ./scripts/elastic7.js restore --output-index "${ES_INDEX_NAME}" --input-file "var/${ES_INDEX_NAME}.json"
 
 info "========================================================================"
 info "Test data is imported into Elasticsearch."

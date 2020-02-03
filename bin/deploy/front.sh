@@ -19,12 +19,15 @@ DIR_CUR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 : "${REDIS_DB:?}"
 : "${REDIS_HOST:?}"
 : "${REDIS_PORT:?}"
+: "${SW_STOCK_ID:?}"
+: "${SW_STORE_ID:?}"
 : "${VSF_API_SERVER_IP:?}"
 : "${VSF_API_SERVER_PORT:?}"
 : "${VSF_API_WEB_HOST:?}"
 : "${VSF_API_WEB_PROTOCOL:?}"
 : "${VSF_FRONT_SERVER_IP:?}"
 : "${VSF_FRONT_SERVER_PORT:?}"
+: "${VSF_FRONT_THEME:?}"
 : "${VSF_FRONT_WEB_HOST:?}"
 : "${VSF_FRONT_WEB_PROTOCOL:?}"
 # local context vars
@@ -60,11 +63,11 @@ cat <<EOM | tee "${DIR_VSF}/config/local.json"
     "url": "${VSF_API_WEB_PROTOCOL}://${VSF_API_WEB_HOST}"
   },
   "elasticsearch": {
-    "index": "${ES_INDEX_NAME}",
-    "indices": [
-      "${ES_INDEX_NAME}"
-    ]
+    "index": "${ES_INDEX_NAME}"
   },
+    "storeViews": {
+      "mapStoreUrlsFor": []
+    },
   "images": {
     "useExactUrlsNoProxy": false,
     "baseUrl": "${VSF_API_WEB_PROTOCOL}://${VSF_API_WEB_HOST}/img/",
@@ -98,7 +101,7 @@ info "Build 'vue-storefront' app in '${DEPLOY_MODE}' mode."
 info "========================================================================"
 # build app according to the deployment mode (default: production)
 if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
-#  git checkout "v1.11.0"
+  #  git checkout "v1.11.0"
   git checkout "master"
 
   cd "${DIR_ROOT}" || exit 255

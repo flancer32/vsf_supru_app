@@ -28,6 +28,7 @@ DIR_ROOT=${DIR_ROOT:=$(cd "$(dirname "$0")/../../" && pwd)}
 : "${REDIS_DB:?}"
 : "${REDIS_HOST:?}"
 : "${REDIS_PORT:?}"
+: "${SW_STOCK_ID:?}"
 : "${VSF_API_SERVER_IP:?}"
 : "${VSF_API_SERVER_PORT:?}"
 : "${VSF_API_WEB_HOST:?}"
