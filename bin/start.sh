@@ -21,6 +21,7 @@ DIR_LOG="${DIR_ROOT}/var/log"
 DIR_PID="${DIR_ROOT}/var/pid"
 DIR_FRONT="${DIR_APPS}/vue-storefront"
 DIR_API="${DIR_APPS}/vue-storefront-api"
+export NODE_TLS_REJECT_UNAUTHORIZED="0" # disable "self-signed cert" error
 
 info "========================================================================"
 info "Start VSF front app."
