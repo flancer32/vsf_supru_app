@@ -19,6 +19,7 @@ DIR_PATCH="${DIR_ROOT}/patch/front"
 info "======================================================================"
 info "Apply patches for 'vue-storefront' app."
 info "======================================================================"
+cd "${DIR_ROOT}" || exit 255
 
 info "SUPPLZ-424: Fix 'ecosystem.json' for PM2."
 patch -p0 <"${DIR_PATCH}/SUPPLZ-424.patch"

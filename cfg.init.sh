@@ -13,7 +13,8 @@ export VSF_FRONT_SERVER_IP="127.0.0.1"
 export VSF_FRONT_SERVER_PORT="3100"
 export VSF_FRONT_WEB_HOST="front.vsf.test.supru.flancer64.com"
 export VSF_FRONT_WEB_PROTOCOL="https"
-export VSF_FRONT_THEME="@supplz/vsf-theme-ru"
+export VSF_FRONT_THEME_NAME="@supplz/vsf-theme-ru"
+export VSF_FRONT_THEME_BRANCH="msk|spb"
 
 # VSF API
 export VSF_API_SERVER_IP="127.0.0.1"
@@ -31,7 +32,7 @@ export ES_HOST="127.0.0.1"
 export ES_PORT="9200"
 export ES_API_VERSION="7.2"
 export ES_URL="http://${ES_HOST}:${ES_PORT}"
-export ES_INDEX_NAME="vsf_msk"
+export ES_INDEX_NAME="vsf_msk|vsf_spb"
 
 # Store view configuration
 export SW_STOCK_ID="1" # change postfix in 'MAGE_URL_REST' below: http://${MAGE_HOST}/rest/store_view

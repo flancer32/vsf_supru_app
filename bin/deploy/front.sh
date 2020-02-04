@@ -27,7 +27,7 @@ DIR_CUR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 : "${VSF_API_WEB_PROTOCOL:?}"
 : "${VSF_FRONT_SERVER_IP:?}"
 : "${VSF_FRONT_SERVER_PORT:?}"
-: "${VSF_FRONT_THEME:?}"
+: "${VSF_FRONT_THEME_NAME:?}"
 : "${VSF_FRONT_WEB_HOST:?}"
 : "${VSF_FRONT_WEB_PROTOCOL:?}"
 # local context vars

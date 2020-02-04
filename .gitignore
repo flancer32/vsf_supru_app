@@ -1,7 +1,7 @@
 /.idea/
 /apps/
-/cfg.local.sh
-/cfg.test.sh
+/cfg.local*.sh
+/cfg.test*.sh
 /tmp/
 /var/log/
 /var/log/!.gitkeep
