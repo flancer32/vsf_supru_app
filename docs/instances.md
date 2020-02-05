@@ -1,6 +1,11 @@
 # Available instances
 
 ## Test
+```
+alexg@supru:~/vsf/msk$ ./bin/start.sh
+alexg@supru:~/vsf/spb$ ./bin/start.sh
+```
+
 * https://msk.front.vsf.test.supru.flancer64.com
 * https://msk.api.vsf.test.supru.flancer64.com
 * https://spb.front.vsf.test.supru.flancer64.com
