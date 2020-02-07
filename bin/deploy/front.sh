@@ -66,9 +66,12 @@ cat <<EOM | tee "${DIR_VSF}/config/local.json"
   "elasticsearch": {
     "index": "${ES_INDEX_NAME}"
   },
-    "storeViews": {
-      "mapStoreUrlsFor": []
-    },
+  "storeViews": {
+    "mapStoreUrlsFor": []
+  },
+  "products": {
+    "defaultFilters": []
+  },
   "images": {
     "useExactUrlsNoProxy": false,
     "baseUrl": "${VSF_API_WEB_PROTOCOL}://${VSF_API_WEB_HOST}/img/",
