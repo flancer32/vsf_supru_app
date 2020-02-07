@@ -46,6 +46,7 @@ info "Clone 'vue-storefront-api' app."
 info "========================================================================"
 git clone https://github.com/DivanteLtd/vue-storefront-api.git "${DIR_VSF_API}"
 cd "${DIR_VSF_API}" || exit 255
+git checkout develop
 
 info "========================================================================"
 info "Create local config for 'vue-storefront-api' app."
