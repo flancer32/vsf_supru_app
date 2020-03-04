@@ -72,10 +72,6 @@ node --harmony "\${M2V_CLI}" categories --removeNonExistent=true
 node --harmony "\${M2V_CLI}" productcategories
 node --harmony "\${M2V_CLI}" products --removeNonExistent=true
 
-cd "\${DIR_API}"
-rm -fr "\${DIR_API}/var/*"
-yarn dump7 --input-index="${ES_INDEX_NAME}" --output-file "./var/${ES_INDEX_NAME}.json"
-yarn db7 rebuild --indexName="${ES_INDEX_NAME}"
 EOM
 
 chmod a+x "${DIR_APPS}/data_replicate_m2v.sh"
@@ -92,7 +88,7 @@ DIR_ROOT=\$(cd "\$(dirname "\$0")/" && pwd) # ./apps/
 DIR_API="\${DIR_ROOT}/vue-storefront-api"
 
 cd "\${DIR_API}"
-rm -fr "\${DIR_API}/var/*"
+rm -fr "\${DIR_API:?}"/var/*
 yarn dump7 --input-index="${ES_INDEX_NAME}" --output-file "\${DIR_API}/var/${ES_INDEX_NAME}.json"
 tar -C "\${DIR_API}/var/" -zcf "\${DIR_ROOT}/../data/dump/supru_${ES_INDEX_NAME}.tar.gz" .
 EOM
