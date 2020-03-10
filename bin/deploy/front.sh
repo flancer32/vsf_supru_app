@@ -315,7 +315,7 @@ if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
 
   yarn install
   yarn build
-#  yarn start
+
 else
   info "deploy in dev mode"
 fi
