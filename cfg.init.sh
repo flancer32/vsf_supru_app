@@ -34,15 +34,11 @@ export ES_API_VERSION="7.2"
 export ES_URL="http://${ES_HOST}:${ES_PORT}"
 export ES_INDEX_NAME="vsf_msk|vsf_spb"
 
-# Store view configuration
-export SW_STOCK_ID="1" # change postfix in 'MAGE_URL_REST' below: http://${MAGE_HOST}/rest/store_view
-export SW_STORE_ID="1"
-
-# Setup connection to Magento (supplz.ru)
-export MAGE_HOST="supplz.ru.local.flancer64.com"
+# Setup connection to Magento (change postfix in 'MAGE_URL_REST' below: http://${MAGE_HOST}/rest/store_view_code)
+export MAGE_HOST="supplz.ru"
 export MAGE_API_CONSUMER_KEY="e3n...6hl"
 export MAGE_API_CONSUMER_SECRET="fp4...fba"
 export MAGE_API_ACCESS_TOKEN="dzr...chx"
 export MAGE_API_ACCESS_TOKEN_SECRET="wi3...ix2"
-export MAGE_URL_REST="http://${MAGE_HOST}/rest/default"
-export MAGE_URL_IMG="http://${MAGE_HOST}/media/catalog/product"
+export MAGE_URL_REST="https://${MAGE_HOST}/rest/default"
+export MAGE_URL_IMG="https://${MAGE_HOST}/media/catalog/product"
