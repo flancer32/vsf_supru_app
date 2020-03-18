@@ -21,8 +21,8 @@ info "Apply patches for 'vue-storefront' app."
 info "======================================================================"
 cd "${DIR_ROOT}" || exit 255
 
-#info "SUPPLZ-424: Fix 'ecosystem.json' for PM2."
-#patch -p0 <"${DIR_PATCH}/SUPPLZ-424.patch"
+info "VSFSUPRU-27: Fix attribute query for Elasticsearch >6.0."
+patch -p0 <"${DIR_PATCH}/VSFSUPRU-27.patch"
 
 info "======================================================================"
 info "All patches are applied for 'vue-storefront' app."

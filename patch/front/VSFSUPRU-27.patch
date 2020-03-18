@@ -1,0 +1,20 @@
+Index: apps/vue-storefront/core/modules/catalog/helpers/createAttributesListQuery.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- apps/vue-storefront/core/modules/catalog/helpers/createAttributesListQuery.ts	(date 1584551914088)
++++ apps/vue-storefront/core/modules/catalog/helpers/createAttributesListQuery.ts	(date 1584551914088)
+@@ -17,10 +17,10 @@
+     searchQuery = searchQuery.applyFilter({key: filterField, value: {'in': filterValues}})
+   }
+   if (onlyDefinedByUser) {
+-    searchQuery = searchQuery.applyFilter({key: 'is_user_defined', value: {'in': [true, '1']}})
++    searchQuery = searchQuery.applyFilter({key: 'is_user_defined', value: {'in': [true]}})
+   }
+   if (onlyVisible) {
+-    searchQuery = searchQuery.applyFilter({key: 'is_visible', value: {'in': [true, '1']}})
++    searchQuery = searchQuery.applyFilter({key: 'is_visible', value: {'in': [true]}})
+   }
+ 
+   return searchQuery
