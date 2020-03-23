@@ -24,6 +24,9 @@ cd "${DIR_ROOT}" || exit 255
 info "VSFSUPRU-27: Fix attribute query for Elasticsearch >6.0."
 patch -p0 <"${DIR_PATCH}/VSFSUPRU-27.patch"
 
+info "VSFSUPRU-34: Disable 'payment-cash-on-delivery' payment method."
+patch -p0 <"${DIR_PATCH}/VSFSUPRU-34.patch"
+
 info "======================================================================"
 info "All patches are applied for 'vue-storefront' app."
 info "======================================================================"
