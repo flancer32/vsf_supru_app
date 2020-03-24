@@ -40,7 +40,7 @@ info "Clone 'vue-storefront' app."
 info "========================================================================"
 git clone https://github.com/DivanteLtd/vue-storefront.git "${DIR_VSF}"
 cd "${DIR_VSF}" || exit 255
-git checkout develop
+# checkout exact version of app below (dependend on deploy mode)
 
 info "========================================================================"
 info "Create local config for 'vue-storefront' app."
@@ -310,19 +310,18 @@ info "Build 'vue-storefront' app in '${DEPLOY_MODE}' mode."
 info "========================================================================"
 # build app according to the deployment mode (default: production)
 if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
-  #  git checkout "v1.11.0"
-  git checkout "master"
+  git checkout "v1.11.2"
 
   cd "${DIR_ROOT}" || exit 255
   . "${DIR_CUR}/front/theme.sh"
   . "${DIR_CUR}/front/patch.sh"
-  cd "${DIR_VSF}" || exit 255
 
+  cd "${DIR_VSF}" || exit 255
   yarn install
   yarn build
 
 else
-  info "deploy in dev mode"
+  info "deploy manually in dev mode"
 fi
 
 info "========================================================================"
