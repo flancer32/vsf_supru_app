@@ -1,0 +1,53 @@
+Index: apps/vue-storefront/src/themes/default/pages/Compare.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- apps/vue-storefront/src/themes/default/pages/Compare.vue	(date 1585210843987)
++++ apps/vue-storefront/src/themes/default/pages/Compare.vue	(date 1585210843987)
+@@ -16,11 +16,11 @@
+               </div>
+               <ul class="compare__features-list">
+                 <li
+-                  v-for="(attr, index) in all_comparable_attributes"
++                  v-for="(attr, index) in available_comparable_attributes"
+                   :key="index"
+                   class="compare__features-item"
+                 >
+-                  {{ attr.default_frontend_label }}
++                  {{ attr.frontend_label }}
+                 </li>
+               </ul>
+             </div>
+@@ -38,7 +38,7 @@
+                   </div>
+                   <ul class="compare__features-list">
+                     <li
+-                      v-for="(attr, attIndex) in all_comparable_attributes"
++                      v-for="(attr, attIndex) in available_comparable_attributes"
+                       :key="attIndex"
+                       class="compare__features-item"
+                     >
+@@ -89,6 +89,22 @@
+       required: true
+     }
+   },
++  computed: {
++    available_comparable_attributes: function () {
++      let result = [];
++      for (let attr of this.all_comparable_attributes) {
++        if (attr.is_comparable) {
++          const code = attr.attribute_code;
++          let add_attr_to_result = false;
++          for (let item of this.items) {
++            if (item[code]) result.push(attr);
++            break;
++          }
++        }
++      }
++      return result;
++    }
++  },
+   metaInfo () {
+     return {
+       title: this.$route.meta.title || this.title || i18n.t('Compare Products'),

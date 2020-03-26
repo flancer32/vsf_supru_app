@@ -27,6 +27,10 @@ patch -p0 <"${DIR_PATCH}/VSFSUPRU-27.patch"
 info "VSFSUPRU-34: Disable 'payment-cash-on-delivery' payment method."
 patch -p0 <"${DIR_PATCH}/VSFSUPRU-34.patch"
 
+info "VSFSUPRU-36: Downgrade version for 'vue-carousel'."
+patch -p0 <"${DIR_PATCH}/VSFSUPRU-36-1.patch"
+patch -p0 <"${DIR_PATCH}/VSFSUPRU-36-2.patch"
+
 info "======================================================================"
 info "All patches are applied for 'vue-storefront' app."
 info "======================================================================"

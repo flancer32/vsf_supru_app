@@ -1,0 +1,15 @@
+Index: apps/vue-storefront/src/themes/default/components/core/ProductAttribute.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- apps/vue-storefront/src/themes/default/components/core/ProductAttribute.vue	(date 1585207528646)
++++ apps/vue-storefront/src/themes/default/components/core/ProductAttribute.vue	(date 1585207528646)
+@@ -1,6 +1,6 @@
+ <template>
+   <li class="lh30 h5">
+-    <span>{{ label|htmlDecode }} </span>
++    <span>{{ label|htmlDecode }}:</span>
+     <span class="weight-700">{{ value|htmlDecode }}</span>
+   </li>
+ </template>

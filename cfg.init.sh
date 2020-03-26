@@ -13,8 +13,8 @@ export VSF_FRONT_SERVER_IP="127.0.0.1"
 export VSF_FRONT_SERVER_PORT="3100"
 export VSF_FRONT_WEB_HOST="front.vsf.test.supru.flancer64.com"
 export VSF_FRONT_WEB_PROTOCOL="https"
-export VSF_FRONT_THEME_NAME="@supplz/vsf-theme-ru"
-export VSF_FRONT_THEME_BRANCH="msk|spb"
+export VSF_FRONT_THEME_NAME="@supplz/vsf-theme-ru"  # TODO: deprecated
+export VSF_FRONT_THEME_CODE="msk|spb"
 
 # VSF API
 export VSF_API_SERVER_IP="127.0.0.1"

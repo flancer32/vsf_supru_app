@@ -1,0 +1,43 @@
+Index: apps/vue-storefront/src/themes/default/components/core/blocks/Microcart/Product.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- apps/vue-storefront/src/themes/default/components/core/blocks/Microcart/Product.vue	(date 1585212241421)
++++ apps/vue-storefront/src/themes/default/components/core/blocks/Microcart/Product.vue	(date 1585212241421)
+@@ -52,7 +52,9 @@
+           <product-quantity
+             class="h5 cl-accent lh25 qty"
+             :value="productQty"
++            :min-quantity="minQuantity"
+             :max-quantity="maxQuantity"
++            :step-quantity="stepQuantity"
+             :loading="isStockInfoLoading"
+             :is-simple-or-configurable="isSimpleOrConfigurable"
+             @input="updateProductQty"
+@@ -156,7 +158,9 @@
+ export default {
+   data () {
+     return {
++      minQuantity: 1,
+       maxQuantity: 0,
++      stepQuantity: 1,
+       quantityError: false,
+       isStockInfoLoading: false
+     }
+@@ -259,6 +263,15 @@
+           product: validProduct,
+           qty: this.productQty
+         })
++        // use 'product.stock.qty_increments' data been loaded from Elasticsearch for min/step values
++        if(
++          validProduct.stock &&
++          validProduct.stock.qty_increments
++        ) {
++          const qtyInc = validProduct.stock.qty_increments;
++          this.minQuantity = qtyInc;
++          this.stepQuantity = qtyInc;
++        }
+         return res.qty
+       } finally {
+         this.isStockInfoLoading = false

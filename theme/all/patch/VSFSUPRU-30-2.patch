@@ -1,0 +1,39 @@
+Index: apps/vue-storefront/src/themes/default/pages/Product.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- apps/vue-storefront/src/themes/default/pages/Product.vue	(date 1585213295292)
++++ apps/vue-storefront/src/themes/default/pages/Product.vue	(date 1585213295292)
+@@ -281,18 +281,20 @@
+     }),
+     getCurrentProduct() {
+       /* wrap getter to replace prices with group prices*/
++      const product = this.$store.getters['product/getCurrentProduct'];
+       const user = this.$store.state.user.current;
+-      const group_id = user.group_id;
+-      const product = this.$store.getters['product/getCurrentProduct'];
+-      if (Array.isArray(product.group_prices)) {
+-        product.group_prices.forEach((one) => {
+-          if (one.group_id == group_id) {
+-            product.price = one.price;
+-            product.price_incl_tax = one.price;
+-            product.special_price = one.price;
+-            product.special_price_incl_tax = one.price;
+-          }
+-        })
++      if (user && user.group_id) {
++        const group_id = user.group_id;
++        if (Array.isArray(product.group_prices)) {
++          product.group_prices.forEach((one) => {
++            if (one.group_id == group_id) {
++              product.price = one.price;
++              product.price_incl_tax = one.price;
++              product.special_price = one.price;
++              product.special_price_incl_tax = one.price;
++            }
++          })
++        }
+       }
+       return product;
+     },

@@ -1,0 +1,39 @@
+Index: apps/vue-storefront/src/themes/default/pages/Category.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- apps/vue-storefront/src/themes/default/pages/Category.vue	(date 1585211896267)
++++ apps/vue-storefront/src/themes/default/pages/Category.vue	(date 1585211896267)
+@@ -136,11 +136,30 @@
+   computed: {
+     ...mapGetters({
+       getCurrentSearchQuery: 'category-next/getCurrentSearchQuery',
+-      getCategoryProducts: 'category-next/getCategoryProducts',
++      // getCategoryProducts: 'category-next/getCategoryProducts',
+       getCurrentCategory: 'category-next/getCurrentCategory',
+       getCategoryProductsTotal: 'category-next/getCategoryProductsTotal',
+       getAvailableFilters: 'category-next/getAvailableFilters'
+     }),
++    getCategoryProducts() {
++      /* wrap getter to replace prices with group prices*/
++      const user = this.$store.state.user.current;
++      const group_id = user.group_id;
++      const result = this.$store.getters['category-next/getCategoryProducts'];
++      result.forEach((product, index, array) => {
++        if (Array.isArray(product.group_prices)) {
++          product.group_prices.forEach((one) => {
++            if (one.group_id == group_id) {
++              product.price = one.price;
++              product.price_incl_tax = one.price;
++              product.special_price = one.price;
++              product.special_price_incl_tax = one.price;
++            }
++          })
++        }
++      });
++      return result;
++    },
+     isLazyHydrateEnabled () {
+       return config.ssr.lazyHydrateFor.includes('category-next.products')
+     },

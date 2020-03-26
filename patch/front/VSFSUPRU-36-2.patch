@@ -1,0 +1,16 @@
+Index: apps/vue-storefront/src/themes/default/package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- apps/vue-storefront/src/themes/default/package.json	(date 1585150382993)
++++ apps/vue-storefront/src/themes/default/package.json	(date 1585150382993)
+@@ -12,7 +12,7 @@
+   "dependencies": {
+     "bodybuilder": "2.2.21",
+     "vue": "^2.6.11",
+-    "vue-carousel": "^0.18",
++    "vue-carousel": "^0.16",
+     "vue-no-ssr": "^0.2.2",
+     "vue-progressbar": "^0.7.5",
+     "vuelidate": "^0.7.5",
