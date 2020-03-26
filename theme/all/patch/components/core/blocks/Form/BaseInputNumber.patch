@@ -3,8 +3,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- apps/vue-storefront/src/themes/default/components/core/blocks/Form/BaseInputNumber.vue	(date 1585211421383)
-+++ apps/vue-storefront/src/themes/default/components/core/blocks/Form/BaseInputNumber.vue	(date 1585211421383)
+--- apps/vue-storefront/src/themes/default/components/core/blocks/Form/BaseInputNumber.vue	(date 1585214404125)
++++ apps/vue-storefront/src/themes/default/components/core/blocks/Form/BaseInputNumber.vue	(date 1585214404125)
 @@ -6,6 +6,7 @@
        type="number"
        :min="min"

@@ -3,8 +3,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- apps/vue-storefront/src/themes/default/pages/Compare.vue	(date 1585210843987)
-+++ apps/vue-storefront/src/themes/default/pages/Compare.vue	(date 1585210843987)
+--- apps/vue-storefront/src/themes/default/pages/Compare.vue	(date 1585214404125)
++++ apps/vue-storefront/src/themes/default/pages/Compare.vue	(date 1585214404125)
 @@ -16,11 +16,11 @@
                </div>
                <ul class="compare__features-list">

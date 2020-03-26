@@ -1,0 +1,73 @@
+Index: apps/vue-storefront/src/themes/default/pages/Product.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- apps/vue-storefront/src/themes/default/pages/Product.vue	(date 1585217251760)
++++ apps/vue-storefront/src/themes/default/pages/Product.vue	(date 1585217251760)
+@@ -117,7 +117,9 @@
+               class="row m0 mb35"
+               v-if="getCurrentProduct.type_id !== 'grouped' && getCurrentProduct.type_id !== 'bundle'"
+               v-model="getCurrentProduct.qty"
++              :min-quantity="minQuantity"
+               :max-quantity="maxQuantity"
++              :step-quantity="stepQuantity"
+               :loading="isStockInfoLoading"
+               :is-simple-or-configurable="isSimpleOrConfigurable"
+               :show-quantity="manageQuantity"
+@@ -258,7 +260,9 @@
+   data () {
+     return {
+       detailsOpen: false,
++      minQuantity: 1,
+       maxQuantity: 0,
++      stepQuantity: 1,
+       quantityError: false,
+       isStockInfoLoading: false,
+       hasAttributesLoaded: false,
+@@ -268,13 +272,32 @@
+   computed: {
+     ...mapGetters({
+       getCurrentCategory: 'category-next/getCurrentCategory',
+-      getCurrentProduct: 'product/getCurrentProduct',
++      // getCurrentProduct: 'product/getCurrentProduct',
+       getProductGallery: 'product/getProductGallery',
+       getCurrentProductConfiguration: 'product/getCurrentProductConfiguration',
+       getOriginalProduct: 'product/getOriginalProduct',
+       attributesByCode: 'attribute/attributeListByCode',
+       getCurrentCustomOptions: 'product/getCurrentCustomOptions'
+     }),
++    getCurrentProduct() {
++      /* wrap getter to replace prices with group prices*/
++      const product = this.$store.getters['product/getCurrentProduct'];
++      const user = this.$store.state.user.current;
++      if (user && user.group_id) {
++        const group_id = user.group_id;
++        if (Array.isArray(product.group_prices)) {
++          product.group_prices.forEach((one) => {
++            if (one.group_id == group_id) {
++              product.price = one.price;
++              product.price_incl_tax = one.price;
++              product.special_price = one.price;
++              product.special_price_incl_tax = one.price;
++            }
++          })
++        }
++      }
++      return product;
++    },
+     getOptionLabel () {
+       return (option) => {
+         const configName = option.attribute_code ? option.attribute_code : option.label.toLowerCase()
+@@ -404,6 +427,11 @@
+ 
+         this.manageQuantity = res.isManageStock
+         this.maxQuantity = res.isManageStock ? res.qty : null
++        if(this.getCurrentProduct.stock) {
++          this.stepQuantity = this.getCurrentProduct.stock.qty_increments ?? 1
++        }
++        this.minQuantity = this.stepQuantity
++        if (this.getCurrentProduct.qty < this.minQuantity) this.getCurrentProduct.qty = parseInt(this.minQuantity)
+       } finally {
+         this.isStockInfoLoading = false
+       }

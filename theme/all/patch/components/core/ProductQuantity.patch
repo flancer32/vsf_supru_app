@@ -3,18 +3,20 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- apps/vue-storefront/src/themes/default/components/core/ProductQuantity.vue	(date 1585211215914)
-+++ apps/vue-storefront/src/themes/default/components/core/ProductQuantity.vue	(date 1585211215914)
-@@ -3,7 +3,7 @@
+--- apps/vue-storefront/src/themes/default/components/core/ProductQuantity.vue	(date 1585214404125)
++++ apps/vue-storefront/src/themes/default/components/core/ProductQuantity.vue	(date 1585214404125)
+@@ -3,8 +3,9 @@
      <base-input-number
        :name="name"
        :value="value"
 -      :min="1"
 +      :min="min"
        :max="max"
++      :step="step"
        :disabled="disabled"
        @input="$emit('input', $event)"
-@@ -44,10 +44,18 @@
+       @blur="$v.$touch()"
+@@ -44,10 +45,18 @@
        type: Boolean,
        default: false
      },
@@ -33,7 +35,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
      checkMaxQuantity: {
        type: Boolean,
        default: true
-@@ -65,6 +73,9 @@
+@@ -65,6 +74,9 @@
      isOnline (value) {
        return onlineHelper.isOnline
      },
@@ -43,7 +45,7 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
      max () {
        if (!this.isOnline || !this.isSimpleOrConfigurable) {
          return null
-@@ -72,6 +83,9 @@
+@@ -72,6 +84,9 @@
  
        return this.maxQuantity
      },
