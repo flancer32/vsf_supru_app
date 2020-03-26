@@ -9,5 +9,5 @@ DIR_CUR="$(cd "$(dirname "$0")" && pwd)"
 # load local config and define common functions
 . "${DIR_ROOT}/bin/lib/commons.sh"
 
+. "${DIR_CUR}/api.sh"   # deploy API first, you can replicate data to Elasticsearch while front is in deployment
 . "${DIR_CUR}/front.sh"
-. "${DIR_CUR}/api.sh"

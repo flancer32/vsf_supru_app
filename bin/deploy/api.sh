@@ -51,50 +51,7 @@ cd "${DIR_VSF_API}" || exit 255
 info "========================================================================"
 info "Create local config for 'vue-storefront-api' app."
 info "========================================================================"
-cat <<EOM | tee "${DIR_VSF_API}/config/local.json"
-{
-  "server": {
-    "host": "${VSF_API_SERVER_IP}",
-    "port": ${VSF_API_SERVER_PORT}
-  },
-  "elasticsearch": {
-    "host": "${ES_HOST}",
-    "port": ${ES_PORT},
-    "indices": [
-      "${ES_INDEX_NAME}"
-    ],
-    "apiVersion": "${ES_API_VERSION}"
-  },
-  "redis": {
-    "host": "${REDIS_HOST}",
-    "port": ${REDIS_PORT},
-    "db": ${REDIS_DB}
-  },
-  "authHashSecret": "__SECRET_CHANGE_ME__",
-  "objHashSecret": "__SECRET_CHANGE_ME__",
-  "tax": {
-    "defaultCountry": "RU"
-  },
-  "magento2": {
-    "imgUrl": "${MAGE_URL_IMG}",
-    "api": {
-      "url": "${MAGE_URL_REST}",
-      "consumerKey": "${MAGE_API_CONSUMER_KEY}",
-      "consumerSecret": "${MAGE_API_CONSUMER_SECRET}",
-      "accessToken": "${MAGE_API_ACCESS_TOKEN}",
-      "accessTokenSecret": "${MAGE_API_ACCESS_TOKEN_SECRET}"
-    }
-  },
-  "magento1": {},
-  "imageable": {
-    "whitelist": {
-      "allowedHosts": [
-        "${MAGE_HOST}"
-      ]
-    }
-  }
-}
-EOM
+envsubst < "${DIR_CUR}/api/local.json" > "${DIR_VSF_API}/config/local.json"
 
 info "========================================================================"
 info "Build 'vue-storefront-api' app in '${DEPLOY_MODE}' mode."
@@ -109,7 +66,7 @@ if test "${DEPLOY_MODE}" != "${DEPLOY_MODE_DEV}"; then
   cd "${DIR_VSF_API}" || exit 255
   yarn install
   yarn build
-  yarn db7 new
+#  yarn db7 new
 else
   info "deploy manually in dev mode"
 fi
