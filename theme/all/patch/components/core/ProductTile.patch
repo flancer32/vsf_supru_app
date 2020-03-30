@@ -1,0 +1,89 @@
+Index: apps/vue-storefront/src/themes/default/components/core/ProductTile.vue
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- apps/vue-storefront/src/themes/default/components/core/ProductTile.vue	(date 1585546329516)
++++ apps/vue-storefront/src/themes/default/components/core/ProductTile.vue	(date 1585546329516)
+@@ -42,21 +42,35 @@
+         {{ product.name | htmlDecode }}
+       </p>
+ 
+-      <span
+-        class="price-original mr5 lh30 cl-secondary"
+-        v-if="product.special_price && parseFloat(product.original_price_incl_tax) > 0 && !onlyImage"
+-      >{{ product.original_price_incl_tax | price(storeView) }}</span>
++    </router-link>
++
++    <div class="tile-bottom">
++
++      <div class="tile-bottom-price">
++        <span
++          class="price-original mr5 lh30 cl-secondary"
++          v-if="product.special_price && parseFloat(product.original_price_incl_tax) > 0 && !onlyImage"
++        >{{ product.original_price_incl_tax | price(storeView) }}</span>
+ 
+-      <span
+-        class="price-special lh30 cl-accent weight-700"
+-        v-if="product.special_price && parseFloat(product.special_price) > 0 && !onlyImage"
+-      >{{ product.price_incl_tax | price(storeView) }}</span>
++        <span
++          class="price-special lh30 cl-accent weight-700"
++          v-if="product.special_price && parseFloat(product.special_price) > 0 && !onlyImage"
++        >{{ product.price_incl_tax | price(storeView) }}</span>
+ 
+-      <span
+-        class="lh30 cl-secondary"
+-        v-if="!product.special_price && parseFloat(product.price_incl_tax) > 0 && !onlyImage"
+-      >{{ product.price_incl_tax | price(storeView) }}</span>
+-    </router-link>
++        <span
++          class="lh30 cl-secondary"
++          v-if="!product.special_price && parseFloat(product.price_incl_tax) > 0 && !onlyImage"
++        >{{ product.price_incl_tax | price(storeView) }}</span>
++      </div>
++
++      <div class="tile-bottom-add-btn">
++        <TileAddToCart
++          :product="this.product"
++        />
++      </div>
++
++    </div>
++
+   </div>
+ </template>
+ 
+@@ -70,13 +84,18 @@
+ import { IsOnWishlist } from '@vue-storefront/core/modules/wishlist/components/IsOnWishlist'
+ import { IsOnCompare } from '@vue-storefront/core/modules/compare/components/IsOnCompare'
+ import { currentStoreView } from '@vue-storefront/core/lib/multistore'
++import BaseInputNumber from 'theme/components/core/blocks/Form/BaseInputNumber'
++import TileAddToCart from 'theme/components/theme/blocks/ProductTile/AddToCart.vue'
++
+ 
+ export default {
+   mixins: [ProductTile, IsOnWishlist, IsOnCompare],
+   components: {
+     ProductImage,
+     AddToWishlist,
+-    AddToCompare
++    AddToCompare,
++    BaseInputNumber,    
++    TileAddToCart
+   },
+   props: {
+     labelsActive: {
+@@ -239,4 +258,12 @@
+     }
+   }
+ }
++
++.tile-bottom-price {
++  float: left;
++}
++
++.tile-bottom-add-btn {
++  float: right;
++}
+ </style>

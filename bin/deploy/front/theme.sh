@@ -45,10 +45,12 @@ info "Apply common patches for 'default' theme."
 info "======================================================================"
 cd "${DIR_ROOT}" || exit 255
 
+patch -p0 <"${DIR_ALL_PATCH}/_other/core/modules/catalog/store/stock/actions.patch"
 patch -p0 <"${DIR_ALL_PATCH}/components/core/blocks/Form/BaseInputNumber.patch"
 patch -p0 <"${DIR_ALL_PATCH}/components/core/blocks/Microcart/Product.patch"
 patch -p0 <"${DIR_ALL_PATCH}/components/core/ProductAttribute.patch"
 patch -p0 <"${DIR_ALL_PATCH}/components/core/ProductQuantity.patch"
+patch -p0 <"${DIR_ALL_PATCH}/components/core/ProductTile.patch"
 patch -p0 <"${DIR_ALL_PATCH}/pages/Category.patch"
 patch -p0 <"${DIR_ALL_PATCH}/pages/Compare.patch"
 patch -p0 <"${DIR_ALL_PATCH}/pages/Product.patch"

@@ -3,8 +3,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- apps/vue-storefront/src/themes/default/components/core/blocks/Form/BaseInputNumber.vue	(date 1585214404125)
-+++ apps/vue-storefront/src/themes/default/components/core/blocks/Form/BaseInputNumber.vue	(date 1585214404125)
+--- apps/vue-storefront/src/themes/default/components/core/blocks/Form/BaseInputNumber.vue	(date 1585238736971)
++++ apps/vue-storefront/src/themes/default/components/core/blocks/Form/BaseInputNumber.vue	(date 1585238736971)
 @@ -6,6 +6,7 @@
        type="number"
        :min="min"
@@ -31,3 +31,12 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
      disabled: {
        type: Boolean,
        default: false
+@@ -89,7 +94,7 @@
+   &__input {
+     border-style: solid;
+     border-width: 0 0 1px 0;
+-    width: 50px;
++    width: 60px;
+     height: 1.4rem;
+     line-height: 1.7rem;
+     @media (min-width: 768px) {

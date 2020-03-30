@@ -1,0 +1,15 @@
+Index: apps/vue-storefront/core/modules/catalog/store/stock/actions.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- apps/vue-storefront/core/modules/catalog/store/stock/actions.ts	(date 1585495963803)
++++ apps/vue-storefront/core/modules/catalog/store/stock/actions.ts	(date 1585495963803)
+@@ -37,6 +37,7 @@
+ 
+       return {
+         qty: result ? result.qty : 0,
++        qty_increments: result && result.qty_increments ? result.qty_increments : 1,
+         status: getStatus(result, 'ok'),
+         isManageStock: result.manage_stock,
+         onlineCheckTaskId: task_id

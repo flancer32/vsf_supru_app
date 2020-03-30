@@ -3,8 +3,8 @@ IDEA additional info:
 Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
 <+>UTF-8
 ===================================================================
---- apps/vue-storefront/src/themes/default/components/core/blocks/Microcart/Product.vue	(date 1585212241421)
-+++ apps/vue-storefront/src/themes/default/components/core/blocks/Microcart/Product.vue	(date 1585212241421)
+--- apps/vue-storefront/src/themes/default/components/core/blocks/Microcart/Product.vue	(date 1585545681919)
++++ apps/vue-storefront/src/themes/default/components/core/blocks/Microcart/Product.vue	(date 1585545681919)
 @@ -52,7 +52,9 @@
            <product-quantity
              class="h5 cl-accent lh25 qty"
@@ -25,16 +25,13 @@ Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
        quantityError: false,
        isStockInfoLoading: false
      }
-@@ -259,6 +263,15 @@
+@@ -259,6 +263,12 @@
            product: validProduct,
            qty: this.productQty
          })
-+        // use 'product.stock.qty_increments' data been loaded from Elasticsearch for min/step values
-+        if(
-+          validProduct.stock &&
-+          validProduct.stock.qty_increments
-+        ) {
-+          const qtyInc = validProduct.stock.qty_increments;
++        // see './core/modules/catalog/store/stock/actions.ts:34@check()'
++        if (res.qty_increments) {
++          const qtyInc = res.qty_increments;
 +          this.minQuantity = qtyInc;
 +          this.stepQuantity = qtyInc;
 +        }
