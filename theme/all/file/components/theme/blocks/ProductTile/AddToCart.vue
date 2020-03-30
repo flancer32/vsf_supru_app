@@ -40,7 +40,6 @@
     },
     data() {
       return {
-        qtyVisible: false,
         qtyDisabled: false,
         value: 0,
         max: undefined,
@@ -69,6 +68,14 @@
           result = item.qty;
         }
         return result;
+      },
+      qtyVisible() {
+        let result = false;
+        const item = this.cartItemForProduct;
+        if (item && item.qty) {
+          result = true;
+        }
+        return result;
       }
     },
     methods: {
@@ -77,7 +84,6 @@
       },
       async addProductItem() {
         /* add product to the cart first time */
-        this.qtyVisible = !this.qtyVisible;
         try {
           this.qtyDisabled = true;
           this.product.qty = this.step;
@@ -96,7 +102,6 @@
         this.qtyDisabled = true;
         if (value <= 0) {
           /* remove cart item */
-          this.qtyVisible = false;
           const diffLog = await this.$store.dispatch('cart/removeItem', {product});
           diffLog.clientNotifications.forEach(notificationData => {
             this.notifyUser(notificationData)
@@ -121,11 +126,6 @@
       if (stock) {
         this.max = stock.qty;
         this.step = stock.qty_increments ?? 1;
-      }
-      /* modify qty value according to the shopping cart and switch visibility for "qty_input"/"cart_icon" */
-      const item = this.cartItemForProduct;
-      if (item) {
-        this.qtyVisible = true;
       }
     }
   }
